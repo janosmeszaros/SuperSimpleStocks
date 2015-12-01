@@ -23,6 +23,10 @@ public class Stock {
         this.parValue = notNull(parValue, "parValue must not be null!");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public static class Builder {
         private String symbol;
         private StockType type;
