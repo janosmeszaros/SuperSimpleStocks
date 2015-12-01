@@ -5,18 +5,15 @@ import com.assignment.model.Stock;
 
 import java.math.BigDecimal;
 
-import static java.math.BigDecimal.ROUND_HALF_UP;
+import static com.assignment.calculators.CalculatorConstants.*;
 
 public class DividendYieldCalculator {
-    private static final int ROUNDING_MODE = ROUND_HALF_UP;
-    private static final BigDecimal ONE_HUNDRED = new BigDecimal("100");
-    public static final int SCALE = 4;
 
     public BigDecimal calculate(BigDecimal tickerPrice, Stock stock) {
         switch (stock.type) {
             case COMMON:
                 return stock.lastDividend
-                        .divide(tickerPrice, SCALE ,ROUNDING_MODE)
+                        .divide(tickerPrice, SCALE, ROUNDING_MODE)
                         .stripTrailingZeros();
             case PREFERRED:
                 BigDecimal dividend =
