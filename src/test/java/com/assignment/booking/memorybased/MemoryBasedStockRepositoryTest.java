@@ -11,15 +11,13 @@ import org.junit.rules.ExpectedException;
 
 import java.util.List;
 
-import static com.assignment.model.StockType.COMMON;
-import static java.math.BigDecimal.ONE;
-import static java.math.BigDecimal.TEN;
+import static com.assignment.calculators.TestInputStocks.createTestInput;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 public class MemoryBasedStockRepositoryTest {
-    private static final Stock STOCK = createStock("stock");
-    private static final Stock STOCK_2 = createStock("stock2");
+    private static final Stock STOCK = createTestInput("stock");
+    private static final Stock STOCK_2 = createTestInput("stock2");
     private static final List<Stock> ALL_STOCK = Lists.newArrayList(STOCK, STOCK_2);
 
     @Rule
@@ -39,13 +37,17 @@ public class MemoryBasedStockRepositoryTest {
         assertThat(stocks, is(ALL_STOCK));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void findStockByNameMustThrowExceptionInCaseOfEmptyInputString() {
+        expectedException.expect(IllegalArgumentException.class);
+
         repository.findStockByName("");
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void findStockByNameMustThrowExceptionInCaseOfNullInputString() {
+        expectedException.expect(NullPointerException.class);
+
         repository.findStockByName(null);
     }
 
@@ -56,21 +58,11 @@ public class MemoryBasedStockRepositoryTest {
         assertThat(stock.symbol, is(STOCK.symbol));
     }
 
-
     @Test
     public void findStockByNameMustThrowExceptionNoStockFoundWithTheGivenSymbol() {
         expectedException.expect(ExcecutionException.class);
         expectedException.expectMessage("Cannot find stock with the given name: 'notExists'!");
 
         repository.findStockByName("notExists");
-    }
-
-    private static Stock createStock(String symbol) {
-        return Stock.builder()
-                .withSymbol(symbol)
-                .withParValue(TEN)
-                .withLastDividend(ONE)
-                .withType(COMMON)
-                .build();
     }
 }
