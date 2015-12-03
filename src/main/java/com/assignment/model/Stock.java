@@ -1,6 +1,9 @@
 package com.assignment.model;
 
+import com.google.common.base.Objects;
 import org.apache.commons.lang3.Validate;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import java.math.BigDecimal;
 import java.util.Optional;
@@ -21,6 +24,16 @@ public class Stock {
         this.lastDividend = notNull(lastDividend, "lastDividend must not be null!");
         this.fixedDividend = notNull(fixedDividend, "fixedDividend must not be null!");
         this.parValue = notNull(parValue, "parValue must not be null!");
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return EqualsBuilder.reflectionEquals(this, o);
+    }
+
+    @Override
+    public int hashCode() {
+        return HashCodeBuilder.reflectionHashCode(this);
     }
 
     public static Builder builder() {
