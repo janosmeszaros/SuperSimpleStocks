@@ -1,10 +1,9 @@
 package com.assignment.model;
 
-import com.google.common.base.Objects;
-import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import javax.xml.bind.annotation.XmlElement;
 import java.math.BigDecimal;
 import java.util.Optional;
 
@@ -12,11 +11,25 @@ import static org.apache.commons.lang3.Validate.notEmpty;
 import static org.apache.commons.lang3.Validate.notNull;
 
 public class Stock {
+    @XmlElement
     public final String symbol;
+    @XmlElement
     public final StockType type;
+    @XmlElement
     public final BigDecimal lastDividend;
+    @XmlElement
     public final Optional<BigDecimal> fixedDividend;
+    @XmlElement
     public final BigDecimal parValue;
+
+    public Stock() {
+        // JAXB
+        symbol = null;
+        type = null;
+        lastDividend = null;
+        fixedDividend = null;
+        parValue = null;
+    }
 
     private Stock(String symbol, StockType type, BigDecimal lastDividend, Optional<BigDecimal> fixedDividend, BigDecimal parValue) {
         this.symbol = notEmpty(symbol, "symbol must not be empty!");
@@ -24,6 +37,10 @@ public class Stock {
         this.lastDividend = notNull(lastDividend, "lastDividend must not be null!");
         this.fixedDividend = notNull(fixedDividend, "fixedDividend must not be null!");
         this.parValue = notNull(parValue, "parValue must not be null!");
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     @Override
@@ -34,10 +51,6 @@ public class Stock {
     @Override
     public int hashCode() {
         return HashCodeBuilder.reflectionHashCode(this);
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     public static class Builder {
