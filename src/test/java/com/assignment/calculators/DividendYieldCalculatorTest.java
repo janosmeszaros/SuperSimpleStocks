@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import java.math.BigDecimal;
 
-import static com.assignment.calculators.TestInputStocks.*;
+import static com.assignment.utils.TestInputStocks.*;
 import static java.math.BigDecimal.ONE;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;

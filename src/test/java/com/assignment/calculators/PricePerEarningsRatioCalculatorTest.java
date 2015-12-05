@@ -8,7 +8,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import java.math.BigDecimal;
 
-import static com.assignment.calculators.TestInputStocks.PREFERRED_INPUT_STOCK;
+import static com.assignment.utils.TestInputStocks.PREFERRED_INPUT_STOCK;
 import static java.math.BigDecimal.TEN;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;

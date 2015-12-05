@@ -11,7 +11,7 @@ import org.junit.rules.ExpectedException;
 
 import java.util.List;
 
-import static com.assignment.calculators.TestInputStocks.createTestInput;
+import static com.assignment.utils.TestInputStocks.createTestInput;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 

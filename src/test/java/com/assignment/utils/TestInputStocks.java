@@ -1,4 +1,4 @@
-package com.assignment.calculators;
+package com.assignment.utils;
 
 import com.assignment.model.Stock;
 import com.assignment.model.StockType;
