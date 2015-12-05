@@ -23,16 +23,13 @@ public class StockPriceCalculator {
         Validate.notNull(stock, "Stock must be present for calculate price!");
         List<Trade> trades = tradingService.getLatestTradesForStock(stock);
 
-        BigDecimal price;
         if (trades.isEmpty()) {
-            price = BigDecimal.ZERO;
+            return BigDecimal.ZERO;
         } else {
             BigDecimal totalValue = sumTotalValues(trades);
             BigDecimal quantity = sumQuantity(trades);
-            price = divide(totalValue, quantity);
+            return divide(totalValue, quantity);
         }
-
-        return price;
     }
 
     private BigDecimal sumTotalValues(List<Trade> trades) {
