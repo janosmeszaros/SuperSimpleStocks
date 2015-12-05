@@ -4,8 +4,7 @@ import com.assignment.model.Stock;
 
 import java.math.BigDecimal;
 
-import static com.assignment.calculators.CalculatorConstants.ROUNDING_MODE;
-import static com.assignment.calculators.CalculatorConstants.SCALE;
+import static com.assignment.calculators.CalculatorHelper.divide;
 import static org.apache.commons.lang3.Validate.notNull;
 
 public class PricePerEarningsRatioCalculator {
@@ -17,6 +16,6 @@ public class PricePerEarningsRatioCalculator {
 
     public BigDecimal calculate(BigDecimal tickerPrice, Stock stock) {
         BigDecimal dividend = dividendYieldCalculator.calculate(tickerPrice, stock);
-        return tickerPrice.divide(dividend, SCALE, ROUNDING_MODE).stripTrailingZeros();
+        return divide(tickerPrice, dividend);
     }
 }

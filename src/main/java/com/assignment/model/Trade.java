@@ -22,6 +22,10 @@ public class Trade {
         this.price = notNull(price, "price must not be null!");
     }
 
+    public BigDecimal totalValue() {
+        return price.multiply(new BigDecimal(quantity));
+    }
+
     @Override
     public boolean equals(Object o) {
         return EqualsBuilder.reflectionEquals(this, o);

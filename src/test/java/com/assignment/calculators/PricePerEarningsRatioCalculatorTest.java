@@ -24,18 +24,18 @@ public class PricePerEarningsRatioCalculatorTest {
     private PricePerEarningsRatioCalculator calculator;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         when(dividendYieldCalculatorMock.calculate(TICKER_PRICE, PREFERRED_INPUT_STOCK)).thenReturn(TEN);
         calculator = new PricePerEarningsRatioCalculator(dividendYieldCalculatorMock);
     }
 
     @Test(expected = NullPointerException.class)
-    public void constructorMustThrowExceptionWhenNoDividendCalculatorIsPassedIn() throws Exception {
+    public void constructorMustThrowExceptionWhenNoDividendCalculatorIsPassedIn() {
         new PricePerEarningsRatioCalculator(null);
     }
 
     @Test
-    public void calculateMustUseTickerPriceAndDividendFromTheYieldCalculatorForTheCalculation() throws Exception {
+    public void calculateMustUseTickerPriceAndDividendFromTheYieldCalculatorForTheCalculation() {
         BigDecimal pPerERatio = calculator.calculate(TICKER_PRICE, PREFERRED_INPUT_STOCK);
 
         assertThat(pPerERatio, is(new BigDecimal("0.25")));

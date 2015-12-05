@@ -16,33 +16,33 @@ public class DividendYieldCalculatorTest {
     private DividendYieldCalculator calculator;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         this.calculator = new DividendYieldCalculator();
     }
 
     @Test
-    public void calculateMustDivideLastDividendWithTickerPrice() throws Exception {
+    public void calculateMustDivideLastDividendWithTickerPrice() {
         BigDecimal yield = calculator.calculate(ONE, COMMON_INPUT_STOCK);
 
         assertThat(yield, is(new BigDecimal("8.2")));
     }
 
     @Test
-    public void calculateMustDivideLastDividendWithOtherTickerPriceValue() throws Exception {
+    public void calculateMustDivideLastDividendWithOtherTickerPriceValue() {
         BigDecimal yield = calculator.calculate(TICKER_PRICE, COMMON_INPUT_STOCK);
 
         assertThat(yield, is(new BigDecimal("4.1")));
     }
 
     @Test
-    public void calculateMustMultipleFixedDividendWithParValueAndDivideWithTickerPriceValueForPreferred() throws Exception {
+    public void calculateMustMultipleFixedDividendWithParValueAndDivideWithTickerPriceValueForPreferred() {
         BigDecimal yield = calculator.calculate(TICKER_PRICE, PREFERRED_INPUT_STOCK);
 
         assertThat(yield, is(new BigDecimal("2.25")));
     }
 
     @Test(expected = ExcecutionException.class)
-    public void calculateMustThrowExceptionWhenNoFixedDividendIsPresentForPreferredStock() throws Exception {
+    public void calculateMustThrowExceptionWhenNoFixedDividendIsPresentForPreferredStock() {
         calculator.calculate(TICKER_PRICE, PREFERRED_STOCK_WITHOUT_FIXED_DIVIDEND);
     }
 }

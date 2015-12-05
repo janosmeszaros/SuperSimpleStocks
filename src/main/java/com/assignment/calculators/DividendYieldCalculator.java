@@ -5,23 +5,20 @@ import com.assignment.model.Stock;
 
 import java.math.BigDecimal;
 
-import static com.assignment.calculators.CalculatorConstants.*;
+import static com.assignment.calculators.CalculatorHelper.ONE_HUNDRED;
+import static com.assignment.calculators.CalculatorHelper.divide;
 
 public class DividendYieldCalculator {
 
     public BigDecimal calculate(BigDecimal tickerPrice, Stock stock) {
         switch (stock.type) {
             case COMMON:
-                return stock.lastDividend
-                        .divide(tickerPrice, SCALE, ROUNDING_MODE)
-                        .stripTrailingZeros();
+                return divide(stock.lastDividend, tickerPrice);
             case PREFERRED:
                 BigDecimal dividend =
                         stock.fixedDividend.orElseThrow(() -> new ExcecutionException("Fixed dividend must be provided for preferred stock!"));
-                return dividend.divide(ONE_HUNDRED, SCALE, ROUNDING_MODE)
-                        .multiply(stock.parValue)
-                        .divide(tickerPrice, SCALE, ROUNDING_MODE)
-                        .stripTrailingZeros();
+                BigDecimal value = divide(dividend, ONE_HUNDRED).multiply(stock.parValue);
+                return divide(value, tickerPrice);
             default:
                 throw new ExcecutionException(String.format("Unknown stock type: %s", stock.type));
         }
