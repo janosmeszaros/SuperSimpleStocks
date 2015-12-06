@@ -1,9 +1,6 @@
 package com.assignment.config;
 
-import com.assignment.commands.IndexCommands;
-import com.assignment.commands.StockCommands;
-import com.assignment.commands.TimestampConverter;
-import com.assignment.commands.TradeCommands;
+import com.assignment.commands.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -27,5 +24,10 @@ public class CommandsConfig {
     @Bean
     public TimestampConverter timestampConverter() {
         return new TimestampConverter();
+    }
+
+    @Bean
+    public CustomBannerProvider customBannerProvider() {
+        return new CustomBannerProvider();
     }
 }
