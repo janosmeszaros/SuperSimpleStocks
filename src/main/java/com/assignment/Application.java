@@ -1,17 +1,12 @@
 package com.assignment;
 
-import com.assignment.config.CalculatorConfig;
-import com.assignment.config.Config;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Import;
+import org.springframework.shell.Bootstrap;
 
-@SpringBootApplication
-@Import({Config.class, CalculatorConfig.class})
+import java.io.IOException;
+
 public class Application {
 
-    public static void main(String[] args) {
-        ApplicationContext ctx = SpringApplication.run(Application.class, args);
+    public static void main(String[] args) throws IOException {
+        Bootstrap.main(args);
     }
 }

@@ -1,9 +1,13 @@
 package com.assignment.model;
 
+import com.assignment.utils.OptionalTypeAdapter;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.math.BigDecimal;
 import java.util.Optional;
 
@@ -18,6 +22,7 @@ public class Stock {
     @XmlElement
     public final BigDecimal lastDividend;
     @XmlElement
+    @XmlJavaTypeAdapter(value = OptionalTypeAdapter.class)
     public final Optional<BigDecimal> fixedDividend;
     @XmlElement
     public final BigDecimal parValue;
@@ -27,7 +32,7 @@ public class Stock {
         symbol = null;
         type = null;
         lastDividend = null;
-        fixedDividend = null;
+        fixedDividend = Optional.empty();
         parValue = null;
     }
 
@@ -51,6 +56,11 @@ public class Stock {
     @Override
     public int hashCode() {
         return HashCodeBuilder.reflectionHashCode(this);
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
 
     public static class Builder {

@@ -1,32 +1,32 @@
 <stocks>
     <stock>
         <symbol>TEA</symbol>
-        <type>Common</type>
+        <type>COMMON</type>
         <lastDividend>0</lastDividend>
         <parValue>100</parValue>
     </stock>
     <stock>
         <symbol>POP</symbol>
-        <type>Common</type>
+        <type>COMMON</type>
         <lastDividend>8</lastDividend>
         <parValue>100</parValue>
     </stock>
     <stock>
         <symbol>ALE</symbol>
-        <type>Common</type>
+        <type>COMMON</type>
         <lastDividend>23</lastDividend>
         <parValue>60</parValue>
     </stock>
     <stock>
         <symbol>GIN</symbol>
-        <type>Preferred</type>
+        <type>PREFERRED</type>
         <lastDividend>8</lastDividend>
         <fixedDividend>2</fixedDividend>
         <parValue>100</parValue>
     </stock>
     <stock>
         <symbol>JOE</symbol>
-        <type>Common</type>
+        <type>COMMON</type>
         <lastDividend>13</lastDividend>
         <parValue>250</parValue>
     </stock>

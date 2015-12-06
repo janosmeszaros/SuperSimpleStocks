@@ -35,11 +35,11 @@ public class Trade {
     public int hashCode() {
         return HashCodeBuilder.reflectionHashCode(this);
     }
-    
+
     public static Builder builder() {
         return new Builder();
     }
-    
+
     public static class Builder {
         private LocalDateTime timestamp;
         private BigInteger quantity;

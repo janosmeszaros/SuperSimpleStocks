@@ -34,14 +34,14 @@ public class StockPriceCalculator {
 
     private BigDecimal sumTotalValues(List<Trade> trades) {
         return trades.stream()
-                    .map(Trade::totalValue)
-                    .reduce(BigDecimal.ZERO, BigDecimal::add);
+                .map(Trade::totalValue)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     private BigDecimal sumQuantity(List<Trade> trades) {
         return new BigDecimal(trades.stream()
-                    .map(trade -> trade.quantity)
-                    .reduce(BigInteger.ZERO, BigInteger::add));
+                .map(trade -> trade.quantity)
+                .reduce(BigInteger.ZERO, BigInteger::add));
     }
 
 }
