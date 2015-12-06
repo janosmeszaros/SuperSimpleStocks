@@ -18,7 +18,7 @@ public class IndexCommands implements CommandMarker {
         return true;
     }
 
-    @CliCommand(value = "index", help = "Print all share index!")
+    @CliCommand(value = "index", help = "Calculate the index for all of the shares!")
     public BigDecimal index() {
         return indexCalculator.calculateIndex();
     }

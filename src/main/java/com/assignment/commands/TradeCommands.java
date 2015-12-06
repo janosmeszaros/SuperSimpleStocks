@@ -34,7 +34,7 @@ public class TradeCommands implements CommandMarker {
         return true;
     }
 
-    @CliCommand(value = "trade list", help = "Print all recoded trades")
+    @CliCommand(value = "trade list", help = "Print all recorded trades")
     public String listTrades() {
         return MAP_JOINER.join(tradingService.listAllTrade().asMap());
     }
