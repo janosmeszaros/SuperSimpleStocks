@@ -1,10 +1,10 @@
 package com.assignment.booking.memorybased;
 
 import com.assignment.booking.TradingService;
-import com.assignment.model.ExcecutionException;
 import com.assignment.model.Stock;
 import com.assignment.model.Trade;
 import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Multimap;
 import org.apache.commons.lang3.Validate;
 
@@ -35,17 +35,13 @@ public class MemoryBasedTradingService implements TradingService {
     @Override
     public List<Trade> getLatestTradesForStock(Stock stock) {
         Validate.notNull(stock);
-        validateKey(stock);
-
-        return trades.get(stock)
-                .stream()
-                .filter(trade -> MINUTES.between(trade.timestamp, now()) <= RECENT_BORDER)
-                .collect(Collectors.toList());
-    }
-
-    private void validateKey(Stock stock) {
         if (!trades.containsKey(stock)) {
-            throw new ExcecutionException(String.format("Cannot find trades for the given stock: '%s'!", stock.symbol));
+            return Lists.newArrayList();
+        } else {
+            return trades.get(stock)
+                    .stream()
+                    .filter(trade -> MINUTES.between(trade.timestamp, now()) <= RECENT_BORDER)
+                    .collect(Collectors.toList());
         }
     }
 

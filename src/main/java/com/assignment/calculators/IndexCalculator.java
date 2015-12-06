@@ -30,6 +30,7 @@ public class IndexCalculator {
         } else {
             double value = stocks.stream()
                     .map(priceCalculator::calculate)
+                    .filter(price -> price.compareTo(ZERO) > 0)
                     .reduce(ONE, BigDecimal::multiply)
                     .doubleValue();
             // Not the best solution but BigDecimal's pow function only accepts integers so cannot be used for root calculation

@@ -1,7 +1,6 @@
 package com.assignment.booking.memorybased;
 
 import com.assignment.booking.TradingService;
-import com.assignment.model.ExcecutionException;
 import com.assignment.model.Stock;
 import com.assignment.model.Trade;
 import com.assignment.utils.TestInputTrades;
@@ -62,11 +61,10 @@ public class MemoryBasedTradingServiceTest {
     }
 
     @Test
-    public void getLatestTradesForStockMustThrowExceptionNoStockFoundWithTheGivenSymbol() {
-        expectedException.expect(ExcecutionException.class);
-        expectedException.expectMessage("Cannot find trades for the given stock: 'test'!");
+    public void getLatestTradesForStockMustReturnEmptyListWhenNoStockFoundWithTheGivenSymbol() {
+        List<Trade> trades = service.getLatestTradesForStock(COMMON_INPUT_STOCK);
 
-        service.getLatestTradesForStock(COMMON_INPUT_STOCK);
+        assertThat(trades, hasSize(0));
     }
 
     @Test

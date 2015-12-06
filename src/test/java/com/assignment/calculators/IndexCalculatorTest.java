@@ -102,4 +102,19 @@ public class IndexCalculatorTest {
 
         assertThat(index, is(new BigDecimal("6.2264")));
     }
+
+    @Test
+    public void calculateIndexMustReturnGeometricMeanOfMultiplePricesWhenOneOfTheValuesAreZero() {
+        when(stockRepositoryMock.getAllStocks())
+                .thenReturn(Lists.newArrayList(COMMON_INPUT_STOCK, PREFERRED_INPUT_STOCK, COMMON_INPUT_STOCK));
+
+        when(stockPriceCalculatorMock.calculate(any()))
+                .thenReturn(new BigDecimal("4.5"))
+                .thenReturn(ZERO)
+                .thenReturn(new BigDecimal("8.765"));
+
+        BigDecimal index = calculator.calculateIndex();
+
+        assertThat(index, is(new BigDecimal("3.404")));
+    }
 }
